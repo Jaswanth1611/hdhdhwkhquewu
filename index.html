@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Games Website</title>
+</head>
+<body>
+  <h1>Games Website</h1>
+  
+  <!-- Add Game Form -->
+  <h2>Add a Game</h2>
+  <form id="addGameForm" action="#" method="post">
+    <label for="gameLink">Game Link:</label>
+    <input type="text" id="gameLink" name="gameLink" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <input type="submit" value="Add Game">
+  </form>
+  
+  <hr>
+  
+  <!-- Game Listing -->
+  <h2>Games List</h2>
+  <ul id="gamesList"></ul>
+  
+  <script>
+    // Check password function
+    function checkPassword() {
+      var passwordInput = document.getElementById("password").value;
+      if (passwordInput !== "asdf1234") {
+        alert("Incorrect password!");
+        return false;
+      }
+      return true;
+    }
+    
+    // Add game function
+    function addGame() {
+      var gameLinkInput = document.getElementById("gameLink").value;
+      var gamesList = document.getElementById("gamesList");
+      var listItem = document.createElement("li");
+      listItem.innerHTML = gameLinkInput;
+      gamesList.appendChild(listItem);
+      document.getElementById("gameLink").value = "";
+    }
+    
+    // Add event listener to form submission
+    var addGameForm = document.getElementById("addGameForm");
+    addGameForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      if (checkPassword()) {
+        addGame();
+      }
+    });
+  </script>
+</body>
+</html>
